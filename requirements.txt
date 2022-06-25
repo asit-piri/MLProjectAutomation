@@ -1,0 +1,7 @@
+numpy
+Flask
+gunicon
+sklearn
+pandas
+PyYAML
+-e .
