@@ -4,4 +4,5 @@ gunicon
 sklearn
 pandas
 PyYAML
+evidently
 -e .
