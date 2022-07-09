@@ -15,10 +15,12 @@ class DataValidation:
     def __init__(self, data_validation_config:DataValidationConfig,
         data_ingestion_artifact:DataIngestionArtifact):
         try:
+            logging.info(f"{'>>'*30}Data Valdaition log started.{'<<'*30} \n\n")
             self.data_validation_config = data_validation_config
             self.data_ingestion_artifact = data_ingestion_artifact
         except Exception as e:
             raise HousingException(e,sys) from e
+
 
     def get_train_and_test_df(self):
         try:
@@ -27,6 +29,7 @@ class DataValidation:
             return train_df,test_df
         except Exception as e:
             raise HousingException(e,sys) from e
+
 
     def is_train_test_file_exists(self)->bool:
         try:
@@ -55,6 +58,7 @@ class DataValidation:
         except Exception as e:
             raise HousingException(e,sys) from e
 
+    
     def validate_dataset_schema(self)->bool:
         try:
             validation_status = False
@@ -68,7 +72,6 @@ class DataValidation:
             # NEAR BAY
             # NEAR OCEAN
             #3. Check column names
-
 
             validation_status = True
             return validation_status 
@@ -131,5 +134,10 @@ class DataValidation:
                 message="Data Validation performed successully."
             )
             logging.info(f"Data validation artifact: {data_validation_artifact}")
+            return data_validation_artifact
         except Exception as e:
             raise HousingException(e,sys) from e
+
+    def __del__(self):
+        logging.info(f"{'>>'*30}Data Valdaition log completed.{'<<'*30} \n\n")
+        

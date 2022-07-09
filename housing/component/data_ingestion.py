@@ -13,7 +13,7 @@ class DataIngestion:
 
     def __init__(self,data_ingestion_config:DataIngestionConfig ):
         try:
-            logging.info(f"{'='*20}Data Ingestion log started.{'='*20} ")
+            logging.info(f"{'>>'*20}Data Ingestion log started.{'<<'*20} ")
             self.data_ingestion_config = data_ingestion_config
 
         except Exception as e:
@@ -28,9 +28,6 @@ class DataIngestion:
             #folder location to download file
             tgz_download_dir = self.data_ingestion_config.tgz_download_dir
             
-            if os.path.exists(tgz_download_dir):
-                os.remove(tgz_download_dir)
-
             os.makedirs(tgz_download_dir,exist_ok=True)
 
             housing_file_name = os.path.basename(download_url)
@@ -80,7 +77,6 @@ class DataIngestion:
                 labels=[1,2,3,4,5]
             )
             
-
             logging.info(f"Splitting data into train and test")
             strat_train_set = None
             strat_test_set = None
@@ -128,4 +124,4 @@ class DataIngestion:
             raise HousingException(e,sys) from e
 
     def __del__(self):
-        logging.info(f"{'='*20}Data Ingestion log completed.{'='*20} \n\n")
+        logging.info(f"{'>>'*20}Data Ingestion log completed.{'<<'*20} \n\n")
